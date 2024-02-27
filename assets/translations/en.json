@@ -1,0 +1,15 @@
+{
+  "success_message": "Success",
+  "bad_response_error": "Bad response, Try again later",
+  "unauthorized_error": "User is not authorised, please try again",
+  "forbidden_error": "Forbidden request, try again later",
+  "internal_server_error": "Some thing went wrong, try again later",
+  "not_found_error": "the website you were trying to reach couldn't be found on the server",
+  "connect_timeOut_error": "Time out error, try again",
+  "cancel_error": "Request was cancelled",
+  "receive_timeOut_error": "Time out error, try again",
+  "send_timeOut_error": "Time out error, try again",
+  "cache_error": "Cache error, try again",
+  "no_internet_connection_error": "Please check your internet connection",
+  "unKnown_error": "Some thing went wrong, try again"
+}
