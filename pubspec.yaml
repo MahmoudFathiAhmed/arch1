@@ -20,8 +20,6 @@ dependencies:
   easy_localization: ^3.0.4
   #dependancy injection
   get_it: ^7.6.7
-  #check internet connection
-  internet_connection_checker: ^1.0.0+1
   #api handling
   dio: ^5.4.1
   #show request details
@@ -32,6 +30,8 @@ dependencies:
   equatable: ^2.0.5
   #functional programming
   dartz: ^0.10.1
+  #responsivness
+  flutter_screenutil: ^5.9.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

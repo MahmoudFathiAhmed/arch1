@@ -11,7 +11,7 @@ class ErrorHandler implements Exception {
       // dio error is its an error from response of the api or from dio itself
       failure = _handleError(error);
     } else {
-      failure = DataSource.unKnown.getFailure(message: failure.message);
+      failure = DataSource.unKnown.getFailure();
     }
   }
 }
@@ -27,17 +27,11 @@ Failure _handleError(DioException error) {
     case DioExceptionType.cancel:
       return DataSource.cancel.getFailure();
     case DioExceptionType.badResponse:
-      // if (error.response != null) {
-      //   final resp = ErrorModel.fromJson(error.response!.data);
-      //   String message;
-      //   if(NetworkConstants.lang == 'ar'){
-      //     message = resp.message!.arMessage as String;
-      //   } else {
-      //     message = resp.message!.enMessage as String;
-      //   }
-      //   return DataSource.badResponse.getFailure(message: message);
-      // }
       return DataSource.badResponse.getFailure();
+    case DioExceptionType.connectionError:
+      return DataSource.noInternetConnection.getFailure();
+    case DioExceptionType.badCertificate:
+      return DataSource.badCertificate.getFailure();
     default:
       return DataSource.unKnown.getFailure();
   }
@@ -57,6 +51,7 @@ enum DataSource {
   sendTimeOut,
   cacheError,
   noInternetConnection,
+  badCertificate,
   unKnown
 }
 
@@ -75,7 +70,8 @@ class ResponseCode {
   static const int sendTimeOut = -4;
   static const int cacheError = -5;
   static const int noInternetConnection = -6;
-  static const int unKnown = -7;
+  static const int badCertificate = -7;
+  static const int unKnown = -8;
 }
 
 class ResponseMessage {
@@ -99,6 +95,7 @@ class ResponseMessage {
   static String sendTimeOut = tr(StringsManager.sendTimeOutError);
   static String cacheError = tr(StringsManager.cacheError);
   static String noInternetConnection = tr(StringsManager.noInternetConnectionError);
+  static String badCertificate = tr(StringsManager.badCertificateError);
   static String unKnown = tr(StringsManager.unKnownError);
 }
 
@@ -136,6 +133,9 @@ extension DataSourceExtension on DataSource {
       case DataSource.noInternetConnection:
         return Failure(ResponseCode.noInternetConnection,
             ResponseMessage.noInternetConnection);
+      case DataSource.badCertificate:
+        return Failure(ResponseCode.badCertificate,
+            ResponseMessage.badCertificate);
       case DataSource.unKnown:
         return Failure(ResponseCode.unKnown, ResponseMessage.unKnown);
     }

@@ -15,8 +15,8 @@ class StartRepository extends BaseStartRepository {
 
   @override
   Future<Either<Failure, List<Post>>> getPosts(NoParameters parameters) async {
-    final result = await baseStartRemoteDataSource.getPosts(parameters);
     try {
+      final result = await baseStartRemoteDataSource.getPosts(parameters);
       return Right(result);
     } on DioException catch (error) {
       return Left(ErrorHandler.handle(error).failure);
@@ -24,14 +24,12 @@ class StartRepository extends BaseStartRepository {
   }
 
   @override
-  Future<Either<Failure, Post>> getAPost(GetAPostParameters parameters) async{
-    final result = await baseStartRemoteDataSource.getAPost(parameters);
+  Future<Either<Failure, Post>> getAPost(GetAPostParameters parameters) async {
     try {
+      final result = await baseStartRemoteDataSource.getAPost(parameters);
       return Right(result);
     } on DioException catch (error) {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
-
-
 }

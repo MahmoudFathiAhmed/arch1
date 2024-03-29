@@ -13,6 +13,7 @@ class StringsManager{
   static const String sendTimeOutError = "send_timeOut_error";
   static const String cacheError = "cache_error";
   static const String noInternetConnectionError = "no_internet_connection_error";
+  static const String badCertificateError = "bad_certificate_error";
   static const String unKnownError = "unKnown_error";
   //
 }

@@ -251,6 +251,7 @@ class AppInt{
   static const int i190=190;
   static const int i200=200;
   static const int i350=350;
+  static const int i400=400;
   static const int i490=490;
   static const int i500=500;
   static const int i700=700;
