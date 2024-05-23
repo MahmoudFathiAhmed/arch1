@@ -13,27 +13,20 @@ abstract class BaseStartRemoteDataSource extends BaseAppRemoteDataSource {
 
 class StartRemoteDataSource extends BaseStartRemoteDataSource {
   @override
-  Future<List<Post>> getPosts(NoParameters parameters) async {
-    return await makeApiCall(
-        url: NetworkConstants.getPosts,
-        method: HttpMethod.get,
-        fromJson: (data) =>
-            data.map<Post>((post) => Post.fromJson(post)).toList());
-    // final d = await dio.getDio();
-    // final response = await d.get(NetworkConstants.getPosts);
-    // if (response.statusCode == AppInt.i200) {
-    //   return response.data.map<Post>((post) => Post.fromJson(post)).toList();
-    // } else {
-    //   throw Failure(ApiInternalStatus.failure, ResponseMessage.unKnown);
-    // }
-  }
-
-  @override
-  Future<Post> getAPost(GetAPostParameters parameters) async {
+  Future<Post> getAPost(GetAPostParameters parameters) async{
     return await makeApiCall(
         url: '${NetworkConstants.getAPost}/${parameters.id}',
         method: HttpMethod.get,
         fromJson: (data) =>
             Post.fromJson(data));
+  }
+
+  @override
+  Future<List<Post>> getPosts(NoParameters parameters) async{
+    return await makeApiCall(
+        url: NetworkConstants.getPosts,
+        method: HttpMethod.get,
+        fromJson: (data) =>
+            data.map<Post>((post) => Post.fromJson(post)).toList());
   }
 }

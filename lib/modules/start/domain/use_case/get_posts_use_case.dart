@@ -2,16 +2,14 @@ import 'package:arch1/core/base_use_case/base_use_case.dart';
 import 'package:arch1/core/error/failure.dart';
 import 'package:arch1/modules/start/data/models/post.dart';
 import 'package:arch1/modules/start/domain/repository/base_start_repository.dart';
-import 'package:dartz/dartz.dart';
 
-class GetPostsUseCase extends BaseUseCase <List<Post>,NoParameters>{
+class GetPostsUseCase extends BaseUseCase<List<Post>, NoParameters> {
   final BaseStartRepository baseStartRepository;
 
   GetPostsUseCase(this.baseStartRepository);
 
   @override
-  Future<Either<Failure, List<Post>>> call(NoParameters parameters) async{
+  Future<(Failure?, List<Post>?)> call(NoParameters parameters) async {
     return await baseStartRepository.getPosts(parameters);
   }
-
 }

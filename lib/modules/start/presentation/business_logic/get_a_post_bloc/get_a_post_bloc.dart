@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'get_a_post_event.dart';
+
 part 'get_a_post_state.dart';
 
 class GetAPostBloc extends Bloc<GetAPostEvent, GetAPostState> {
@@ -15,11 +16,14 @@ class GetAPostBloc extends Bloc<GetAPostEvent, GetAPostState> {
     on<GetAPostEvent>(getAPost);
   }
 
-
-
-  FutureOr<void> getAPost(GetAPostEvent event, Emitter<GetAPostState> emit) async{
-emit(GetAPostLoading());
+  FutureOr<void> getAPost(
+      GetAPostEvent event, Emitter<GetAPostState> emit) async {
+    emit(GetAPostLoading());
     final result = await getAPostUseCase(GetAPostParameters(id: event.id));
-    result.fold((l) => emit(GetAPostError(error: l.message)), (r) => emit(GetAPostSuccess(post: r)));
+    if (result.$1 != null) {
+      emit(GetAPostError(error: result.$1!.message));
+    } else {
+      emit(GetAPostSuccess(post: result.$2!));
+    }
   }
 }

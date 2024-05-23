@@ -28,8 +28,6 @@ dependencies:
   flutter_bloc: ^8.1.4
   #compare objects
   equatable: ^2.0.5
-  #functional programming
-  dartz: ^0.10.1
   #responsivness
   flutter_screenutil: ^5.9.0
 dev_dependencies:
