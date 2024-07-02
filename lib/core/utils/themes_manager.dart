@@ -81,14 +81,14 @@ ThemeData getApplicationTheme() {
     ),
     textButtonTheme: TextButtonThemeData(style: ButtonStyle(
       textStyle: MaterialStateProperty.all(
-          getRegularStyle(color: ColorsManager.white, fontSize: 13)),
+          getRegularStyle(color: ColorsManager.white, fontSize: FontSize.s13)),
     )),
     // input decoration theme(text form field)
     inputDecorationTheme: InputDecorationTheme(
-        hintStyle: getRegularStyle(color: ColorsManager.white70,fontSize: 15),
+        hintStyle: getRegularStyle(color: ColorsManager.white70,fontSize: FontSize.s15),
         contentPadding:
         const EdgeInsets.all(16),
-        errorStyle: getLightStyle(color: ColorsManager.errorColor,fontSize: 12,),
+        errorStyle: getLightStyle(color: ColorsManager.errorColor,fontSize: FontSize.s12,),
         disabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: ColorsManager.borderTextFieldDark, width: 1),
             borderRadius: BorderRadius.all(Radius.circular(4.0))),

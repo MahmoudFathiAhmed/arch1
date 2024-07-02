@@ -9,6 +9,7 @@ class NetworkConstants{
 
   static const String getPosts='/posts';
   static const String getAPost='/posts';
+  static const String login='/login';
 // End points
 
 }

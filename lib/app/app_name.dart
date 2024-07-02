@@ -1,4 +1,3 @@
-
 import 'package:arch1/core/extensions/extenstions.dart';
 import 'package:arch1/core/helpers/app_preferences.dart';
 import 'package:arch1/core/routes/routes_manager.dart';
@@ -22,7 +21,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final AppPreferences _appPreferences = getIt.get<AppPreferences>();
 
-
   @override
   void didChangeDependencies() async {
     _appPreferences.getLocale().then((locale) => context.setLocale(locale));
@@ -32,19 +30,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(context.pixelToDp(1290), context.pixelToDp(2796)),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_,child)=> MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        title: 'AppName',
-        debugShowCheckedModeBanner: false,
-        theme: getApplicationTheme(),
-        onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.initialRoute,
-      ),
-    );
+        designSize: Size(context.pixelToDp(1290), context.pixelToDp(2796)),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) => MaterialApp(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              title: 'AppName',
+              debugShowCheckedModeBanner: false,
+              theme: getApplicationTheme(),
+              onGenerateRoute: RouteGenerator.getRoute,
+              initialRoute: Routes.initialRoute,
+            ));
   }
 }

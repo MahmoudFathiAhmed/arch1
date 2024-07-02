@@ -1,12 +1,12 @@
 import 'package:arch1/core/helpers/app_preferences.dart';
 import 'package:arch1/core/network/dio_factory.dart';
-import 'package:arch1/modules/start/data/datasource/remote/start_remote_data_source.dart';
-import 'package:arch1/modules/start/data/repository/start_repository.dart';
-import 'package:arch1/modules/start/domain/repository/base_start_repository.dart';
-import 'package:arch1/modules/start/domain/use_case/get_a_post_use_case.dart';
-import 'package:arch1/modules/start/domain/use_case/get_posts_use_case.dart';
-import 'package:arch1/modules/start/presentation/business_logic/get_a_post_bloc/get_a_post_bloc.dart';
-import 'package:arch1/modules/start/presentation/business_logic/get_posts_bloc/get_posts_bloc.dart';
+import 'package:arch1/features/start/data/datasource/remote/start_remote_data_source.dart';
+import 'package:arch1/features/start/data/repository/start_repository.dart';
+import 'package:arch1/features/start/domain/repository/base_start_repository.dart';
+import 'package:arch1/features/start/domain/use_case/get_a_post_use_case.dart';
+import 'package:arch1/features/start/domain/use_case/get_posts_use_case.dart';
+import 'package:arch1/features/start/presentation/business_logic/get_a_post_bloc/get_a_post_bloc.dart';
+import 'package:arch1/features/start/presentation/business_logic/get_posts_bloc/get_posts_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,6 +24,7 @@ class ServicesLocator {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerFactory<SharedPreferences>(() => sharedPreferences);
 
+    ///Cubits
 
 
     /// USE CASES
@@ -32,18 +33,18 @@ class ServicesLocator {
 
     /// REPOSITORIES
     getIt.registerLazySingleton<BaseStartRepository>(
-            () => StartRepository(getIt()));
-
+        () => StartRepository(getIt()));
 
     ///DATA SOURCES
     getIt.registerLazySingleton<BaseStartRemoteDataSource>(
-            () => StartRemoteDataSource());
+        () => StartRemoteDataSource());
 
     /// BLOCS
-    getIt.registerFactory(() => GetPostsBloc(getIt(),));
-    getIt.registerFactory(() => GetAPostBloc(getIt(),));
-
-
-
+    getIt.registerFactory(() => GetPostsBloc(
+          getIt(),
+        ));
+    getIt.registerFactory(() => GetAPostBloc(
+          getIt(),
+        ));
   }
 }

@@ -1,0 +1,11 @@
+flutter_native_splash:
+  #IOS & Android below 12(below api 31).
+  # run this command dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+  color: "#ffffff"
+  image: assets/images/splash.png
+  #Andorid 12 and above
+  android_12:
+   #image inside=>figma frame 640 * 640 then group this selection
+  #center image above in frame 960 *960 then group this selection and download
+    color: "#ffffff"
+    image: assets/images/splash_android_12.png

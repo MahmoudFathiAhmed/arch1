@@ -12,5 +12,7 @@
   "cache_error": "Cache error, try again",
   "no_internet_connection_error": "Please check your internet connection",
   "bad_certificate_error": "Bad certificate, please try again",
-  "unKnown_error": "Some thing went wrong, try again"
+  "unKnown_error": "Some thing went wrong, try again",
+  "english": "English",
+  "arabic": "عربي"
 }

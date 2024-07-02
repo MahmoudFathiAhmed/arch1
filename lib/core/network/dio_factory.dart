@@ -1,5 +1,3 @@
-
-
 import 'package:arch1/core/helpers/app_preferences.dart';
 import 'package:arch1/core/network/network_constants.dart';
 import 'package:dio/dio.dart';

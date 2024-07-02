@@ -8,10 +8,19 @@ class LocalizationHelper {
           ? TextDirection.LTR
           : TextDirection.RTL;
 
-  static Future<void> changeLanguage(BuildContext context) => context
+  ///change language
+  static Future<void> changeLanguage(BuildContext context) async=>await context
       .setLocale(Locale(context.locale.languageCode == 'en' ? 'ar' : 'en'));
 
+  ///change to Arabic
+  static Future<void> changeToArabic(BuildContext context) async=> await context
+      .setLocale(const Locale('ar'));
+
+  ///change to english
+  static Future<void> changeToEnglish(BuildContext context) async => await context
+      .setLocale(const Locale('en'));
   /// get the text direction either LTR or RTL
   static String getLanguageCode(BuildContext context) =>
       context.deviceLocale.languageCode;
+
 }

@@ -30,11 +30,22 @@ dependencies:
   equatable: ^2.0.5
   #responsivness
   flutter_screenutil: ^5.9.0
+  #infinite scroll
+  infinite_scroll_pagination: ^4.0.0
+  #shimmer
+  shimmer: ^3.0.0
+  #native_splash
+  flutter_native_splash: ^2.3.5
+  # provides API to store data in secure storage.
+  flutter_secure_storage: ^9.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+
   flutter_lints: ^2.0.0
+  #app icon
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
 

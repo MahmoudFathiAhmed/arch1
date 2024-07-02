@@ -15,5 +15,10 @@ class StringsManager{
   static const String noInternetConnectionError = "no_internet_connection_error";
   static const String badCertificateError = "bad_certificate_error";
   static const String unKnownError = "unKnown_error";
-  //
+  static const String englishCode = 'en';
+  static const String arabicCode = 'ar';
+  static const String locale = 'locale';
+  static const String cacheFailure = 'Cache Failure';
+
+//
 }

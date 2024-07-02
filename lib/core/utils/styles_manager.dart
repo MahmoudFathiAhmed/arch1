@@ -1,10 +1,11 @@
 
 import 'package:arch1/core/utils/font_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 TextStyle _getTextStyle(FontWeight fontWeight, double fontSize, Color color,{String fontFamily = FontConstants.interFontFamily}) {
   return TextStyle(
-    fontSize: fontSize,
+    fontSize: fontSize.sp,
     fontFamily: fontFamily,
     fontWeight: fontWeight,
     color: color,

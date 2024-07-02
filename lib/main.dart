@@ -13,7 +13,7 @@ void main() async {
   ]);
   ServicesLocator().init();
   runApp(EasyLocalization(
-      supportedLocales: const [arabicLocale, englishLocale],
+      supportedLocales: const [englishLocale, arabicLocale],
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
       path: localizationPath,

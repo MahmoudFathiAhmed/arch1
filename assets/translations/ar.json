@@ -12,5 +12,7 @@
   "cache_error": "خطأ في التخزين، حاول مرة اخرى",
   "no_internet_connection_error": "من فضلك تأكد من اتصالك بالانترنت",
   "bad_certificate_error": "عفوا حدث خطأ، حاول مرة اخري",
-  "unKnown_error": "عفوا حدث خطأ حاول مرة اخري"
+  "unKnown_error": "عفوا حدث خطأ حاول مرة اخري",
+  "arabic": "عربي",
+  "english": "English"
 }

@@ -1,0 +1,9 @@
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  min_sdk_android: 21
+  image_path: 'assets/images/splash.png'
+  #  remove_alpha_ios: true
+  background_color_ios: "#ffffff"
+#  flutter pub get
+#  dart run flutter_launcher_icons
