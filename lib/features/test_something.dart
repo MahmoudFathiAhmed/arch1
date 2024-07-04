@@ -1,44 +1,26 @@
-import 'package:arch1/core/shared_widgets/drop_down_menu.dart';
+import 'package:arch1/core/shared_widgets/base_view_widget.dart';
+import 'package:arch1/core/shared_widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
-class TestSomething extends StatelessWidget {
+class TestSomething extends StatefulWidget {
   const TestSomething({super.key});
 
   @override
+  State<TestSomething> createState() => _TestSomethingState();
+}
+
+class _TestSomethingState extends State<TestSomething> {
+
+  @override
   Widget build(BuildContext context) {
-    List<String> items = [
-      'One',
-      'Two',
-      'Three',
-      'Four',
-      'Five',
-      'Six',
-      'Seven',
-      'Eight',
-      'Nine',
-      'Ten',
-      'Eleven',
-      'Twelve',
-      'Thirteen',
-    ];
-    return Scaffold(
-      appBar: AppBar(title: Text('Custom DropdownButton')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CustomDropdownButton<String>(
-            itemsList: items,
-            icon: Icons.expand_more,
-            hint: 'Select an option',
-            dropDownItemChange: (value) {
-              print('Selected: $value');
-            },
-            dropDownItemName: (String a) {
-              return a;
-            },
-          ),
-        ),
-      ),
-    );
+    return BaseViewWidget(
+      appBar: AppBar(backgroundColor: Colors.blue,),
+        drawer: const CustomDrawer(items: [],),
+        hasRefresh: true,
+        onRefreshListener: ()async{
+        print('x');
+        return true;
+        },
+        body: Text('mahmoud',style: TextStyle(color: Colors.white),));
   }
 }

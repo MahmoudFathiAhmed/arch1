@@ -1,6 +1,6 @@
 import 'package:arch1/core/utils/strings_manager.dart';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import 'failure.dart';
 
 class ErrorHandler implements Exception {
@@ -76,27 +76,27 @@ class ResponseCode {
 
 class ResponseMessage {
   static String success =
-      tr(StringsManager.successMessage); // success with data
+      StringsManager.successMessage; // success with data
   static String noContent =
-      tr(StringsManager.successMessage); // success with no data (no content)
+      StringsManager.successMessage; // success with no data (no content)
   static String badResponse =
-      tr(StringsManager.badResponseError); // failure api rejected request
+      StringsManager.badResponseError; // failure api rejected request
   static String unauthorized =
-      tr(StringsManager.unauthorizedError); // failure, user is not authorized
+      StringsManager.unauthorizedError; // failure, user is not authorized
   static String forbidden =
-      tr(StringsManager.forbiddenError); // failure api rejected request
+      StringsManager.forbiddenError; // failure api rejected request
   static String internalServerError =
-      tr(StringsManager.internalServerError); // failure, crash in server side
-  static String notFound = tr(StringsManager.notFoundError);
+      StringsManager.internalServerError; // failure, crash in server side
+  static String notFound = StringsManager.notFoundError;
 
-  static String connectTimeOut = tr(StringsManager.connectTimeOutError);
-  static String cancel = tr(StringsManager.cancelError);
-  static String receiveTimeOut = tr(StringsManager.receiveTimeOutError);
-  static String sendTimeOut = tr(StringsManager.sendTimeOutError);
-  static String cacheError = tr(StringsManager.cacheError);
-  static String noInternetConnection = tr(StringsManager.noInternetConnectionError);
-  static String badCertificate = tr(StringsManager.badCertificateError);
-  static String unKnown = tr(StringsManager.unKnownError);
+  static String connectTimeOut = StringsManager.connectTimeOutError;
+  static String cancel = StringsManager.cancelError;
+  static String receiveTimeOut = StringsManager.receiveTimeOutError;
+  static String sendTimeOut = StringsManager.sendTimeOutError;
+  static String cacheError = StringsManager.cacheError;
+  static String noInternetConnection = StringsManager.noInternetConnectionError;
+  static String badCertificate = StringsManager.badCertificateError;
+  static String unKnown = StringsManager.unKnownError;
 }
 
 extension DataSourceExtension on DataSource {

@@ -5,6 +5,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//replace on word to another in all app run this in command line
+//find . -type f -name "*.dart" -exec sed -i '' 's/arch1/arch1/g' {} \;
+//find . -type f -name "*.dart" -exec sed -i '' 's/arch1/arch1/g' {} \;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([

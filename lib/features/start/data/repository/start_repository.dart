@@ -6,7 +6,6 @@ import 'package:arch1/features/start/domain/repository/base_start_repository.dar
 import 'package:arch1/features/start/domain/use_case/get_a_post_use_case.dart';
 import 'package:arch1/features/start/domain/use_case/get_posts_use_case.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class StartRepository extends BaseStartRepository {
   final BaseStartRemoteDataSource baseStartRemoteDataSource;
@@ -27,7 +26,8 @@ class StartRepository extends BaseStartRepository {
   }
 
   @override
-  Future<(Failure?, List<Post>?)> getPosts(GetPostsParameters parameters) async {
+  Future<(Failure?, List<Post>?)> getPosts(
+      GetPostsParameters parameters) async {
     try {
       final result = await baseStartRemoteDataSource.getPosts(parameters);
       return (null, result);

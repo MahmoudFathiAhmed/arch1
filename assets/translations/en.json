@@ -14,5 +14,7 @@
   "bad_certificate_error": "Bad certificate, please try again",
   "unKnown_error": "Some thing went wrong, try again",
   "english": "English",
-  "arabic": "عربي"
+  "arabic": "عربي",
+  "try_again": "Try Again"
+
 }

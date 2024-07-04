@@ -53,6 +53,11 @@ extension StringExtensions on String? {
   bool isNullOrEmpty() => this == null || this == "";
 }
 
+extension BoolExtensions on bool? {
+  bool isNotNullOrTrue() => this != null || this == true;
+  bool isNotNullAndTrue() => this != null && this == true;
+}
+
 extension ListExtensions<T> on List<T>? {
   /// check if list is null or empty
   bool isNullOrEmpty() => this == null || this!.isEmpty;

@@ -14,5 +14,6 @@
   "bad_certificate_error": "عفوا حدث خطأ، حاول مرة اخري",
   "unKnown_error": "عفوا حدث خطأ حاول مرة اخري",
   "arabic": "عربي",
-  "english": "English"
+  "english": "English",
+  "try_again": "حاول مرة أخري"
 }

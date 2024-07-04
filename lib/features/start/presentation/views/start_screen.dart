@@ -1,4 +1,8 @@
 import 'package:arch1/core/services/service_locator.dart';
+import 'package:arch1/core/shared_widgets/app_adaptive_dialog.dart';
+import 'package:arch1/core/shared_widgets/app_loading_widget.dart';
+import 'package:arch1/core/shared_widgets/base_view_widget.dart';
+import 'package:arch1/core/shared_widgets/error_widget.dart';
 import 'package:arch1/core/utils/colors_manager.dart';
 import 'package:arch1/features/start/presentation/business_logic/get_a_post_bloc/get_a_post_bloc.dart';
 import 'package:arch1/features/start/presentation/business_logic/get_posts_bloc/get_posts_bloc.dart';
@@ -10,90 +14,108 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: BlocProvider(
-        create: (context) =>
-            GetPostsBloc(getIt.get())..add(const GetPostsEvent()),
-        child: BlocBuilder<GetPostsBloc, GetPostsState>(
-          builder: (getPostsContext, getPostsState) {
-            if (getPostsState is GetPostsLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (getPostsState is GetPostsError) {
-              return Center(
-                child: Text(getPostsState.error),
-              );
-            }
-            if (getPostsState is GetPostsSuccess) {
-              return ListView(
-                  children: List.generate(
-                      getPostsState.posts.length,
-                      (index) => Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5.0, horizontal: 10),
-                            child: BlocProvider(
-                              create: (context) => GetAPostBloc(getIt.get()),
-                              child: BlocConsumer<GetAPostBloc, GetAPostState>(
-                                listener: (getAPostContext, getAPostState) {
-                                  if (getAPostState is GetAPostSuccess) {
-                                    showAdaptiveDialog(
-                                      context: context,
-                                      builder: (context) =>
-                                          AlertDialog.adaptive(
-                                        backgroundColor: ColorsManager.white,
-                                        title: Text(
-                                          getAPostState.post.title ?? '',
-                                        ),
-                                        content: Text(
-                                          getAPostState.post.body ?? '',
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text('Close')),
-                                          TextButton(
-                                              onPressed: () {},
-                                              child: const Text('OK')),
-                                        ],
-                                      ),
-                                      barrierDismissible: true,
-                                    );
-                                  }
-                                },
-                                builder: (getAPostContext, getAPostState) {
-                                  return getAPostState is GetAPostLoading
-                                      ? const Center(
-                                          child: CircularProgressIndicator())
-                                      : ElevatedButton(
-                                          onPressed: () {
-                                            getAPostContext
-                                                .read<GetAPostBloc>()
-                                                .add(GetAPostEvent(
-                                                    id: getPostsState
-                                                            .posts[index].id ??
-                                                        0));
-                                          },
-                                          child: Text(
-                                            getPostsState.posts[index].title ??
-                                                '',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displayMedium,
-                                          ),
-                                        );
-                                },
+    print('## x');
+    return BlocProvider(
+      create: (context) =>
+      GetPostsBloc(getIt.get())..add(const GetPostsEvent()),
+      child: const StartScreenContent(),
+    );
+  }
+}
+class StartScreenContent extends StatefulWidget {
+  const StartScreenContent({super.key});
+
+  @override
+  State<StartScreenContent> createState() => _StartScreenContentState();
+}
+
+class _StartScreenContentState extends State<StartScreenContent> {
+
+  @override
+  Widget build(BuildContext context) {
+    print('## y');
+    return BaseViewWidget(
+      hasRefresh: true,
+      onRefreshListener: ()async{
+        context.read<GetPostsBloc>().add(const GetPostsEvent());
+        return true;
+      },
+      body: BlocBuilder<GetPostsBloc, GetPostsState>(
+        builder: (getPostsContext, getPostsState) {
+          if (getPostsState is GetPostsLoading) {
+            return const AppLoadingWidget();
+          }
+          if (getPostsState is GetPostsError) {
+            return AppErrorWidget(description: getPostsState.error);
+          }
+          if (getPostsState is GetPostsSuccess) {
+            return ListView(
+                children: List.generate(
+                    getPostsState.posts.length,
+                        (index) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10),
+                      child: BlocProvider(
+                        create: (context) => GetAPostBloc(getIt.get()),
+                        child: BlocConsumer<GetAPostBloc, GetAPostState>(
+                          listener: (getAPostContext, getAPostState) {
+                            if (getAPostState is GetAPostSuccess) {
+                              appAdaptiveDialog(
+                                context,
+                                bgColor: ColorsManager.white,
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Close')),
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: const Text('OK')),
+                                ],
+                                title: Text(
+                                  getAPostState.post.title ?? '',
+                                ),
+                                content: Text(
+                                  getAPostState.post.body ?? '',
+                                ),
+                              );
+                            }
+                            if (getAPostState is GetAPostError) {
+                              appErrorDialog(context, getAPostState.error);
+                            }
+                          },
+                          builder: (getAPostContext, getAPostState) {
+                            return getAPostState is GetAPostLoading
+                                ? const AppLoadingWidget()
+                                : ElevatedButton(
+                              onPressed: () {
+                                getAPostContext
+                                    .read<GetAPostBloc>()
+                                    .add(GetAPostEvent(
+                                    id: getPostsState
+                                        .posts[index].id ??
+                                        0));
+                              },
+                              child: Text(
+                                getPostsState.posts[index].title ??
+                                    '',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayMedium,
                               ),
-                            ),
-                          )));
-            } else {
-              return const Center(child: Text('No Data'));
-            }
-          },
-        ),
+                            );
+                          },
+                        ),
+                      ),
+                    )));
+          } else {
+            return const AppLoadingWidget();
+          }
+        },
       ),
     );
   }
 }
+
+
