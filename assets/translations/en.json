@@ -15,6 +15,9 @@
   "unKnown_error": "Some thing went wrong, try again",
   "english": "English",
   "arabic": "عربي",
-  "try_again": "Try Again"
+  "try_again": "Try Again",
+  "something_went_wrong": "Something went wrong, try again",
+  "try_refresh_page": "Try Refreshing The Page",
+  "no_data_found": "No Data Found"
 
 }

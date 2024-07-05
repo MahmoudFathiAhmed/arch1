@@ -15,5 +15,10 @@
   "unKnown_error": "عفوا حدث خطأ حاول مرة اخري",
   "arabic": "عربي",
   "english": "English",
-  "try_again": "حاول مرة أخري"
+  "try_again": "حاول مرة أخري",
+  "something_went_wrong": "حدث خطأ، حاول مرة أخري",
+  "try_refresh_page": "من فضلك قم بإعادة تحميل الصفحة",
+  "no_data_found": "لا توجد بيانات"
+
+
 }

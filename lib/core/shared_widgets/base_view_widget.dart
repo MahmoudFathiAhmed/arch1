@@ -48,6 +48,7 @@ class BaseViewWidget extends StatelessWidget {
         ? RefreshIndicator(
             triggerMode: RefreshIndicatorTriggerMode.anywhere,
             onRefresh: onRefreshListener!,
+            
             child: body,
           )
         : body;

@@ -17,7 +17,7 @@ class GetPostsUseCase extends BaseUseCase<List<Post>, GetPostsParameters> {
 class GetPostsParameters extends Equatable{
   final int startIndex;
   final int limit;
-  const GetPostsParameters({ this.startIndex=0, this.limit=12});
+  const GetPostsParameters({ required this.startIndex, required this.limit});
   @override
   List<Object> get props => [startIndex,limit];
 }

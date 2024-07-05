@@ -16,11 +16,12 @@ class StringsManager{
   static const String badCertificateError = "bad_certificate_error";
   static const String unKnownError = "unKnown_error";
 
-  static const String englishCode = 'en';
-  static const String arabicCode = 'ar';
-  static const String locale = 'locale';
-  static const String cacheFailure = 'Cache Failure';
+  static const String arabic = 'arabic';
+  static const String english = 'english';
   static const String tryAgain = 'try_again';
+  static const String tryRefreshPage = 'try_refresh_page';
+  static const String somethingWentWrong = 'something_went_wrong';
+  static const String noDataFound = 'no_data_found';
 
 //
 }

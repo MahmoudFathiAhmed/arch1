@@ -18,7 +18,7 @@ class GetPostsBloc extends Bloc<GetPostsEvent, GetPostsState> {
 
   FutureOr<void> _getPosts(GetPostsEvent event, Emitter<GetPostsState> emit) async{
     emit(GetPostsLoading());
-    final result = await getPostsUseCase(const GetPostsParameters(startIndex:0, limit: 100));
+    final result = await getPostsUseCase(GetPostsParameters(startIndex: event.startIndex, limit: event.limit));
     if (result.$1 != null) {
       emit(GetPostsError(error: result.$1!.message));
     } else {

@@ -6,8 +6,19 @@ import 'package:flutter/material.dart';
 class AppErrorWidget extends StatelessWidget {
   final String description;
   final bool isDialog;
-  const AppErrorWidget(
-      {super.key, required this.description, this.isDialog = false,});
+  final Future<bool> Function()? buttonClickListener;
+  final bool hasButton;
+  final String? buttonTxt;
+
+
+  const AppErrorWidget({
+    super.key,
+    required this.description,
+    this.isDialog = false,
+    this.buttonClickListener,
+    this.hasButton = false,
+    this.buttonTxt,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +30,13 @@ class AppErrorWidget extends StatelessWidget {
         : EmptyErrorWidget(
             description: description,
             isEmptyView: false,
+            hasButton: hasButton,
+            buttonClickListener: buttonClickListener,
+            buttonTxt: buttonTxt,
           );
   }
 }
+
 Future<dynamic> appErrorDialog(BuildContext context, String description) {
   return appAdaptiveDialog(
     context,

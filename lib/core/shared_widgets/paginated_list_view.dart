@@ -1,11 +1,13 @@
-
+import 'package:arch1/core/shared_widgets/app_loading_widget.dart';
 import 'package:arch1/core/shared_widgets/empty_error_widget.dart';
+import 'package:arch1/core/shared_widgets/error_widget.dart';
+import 'package:arch1/core/shared_widgets/shimmer_loading_parser.dart';
 import 'package:arch1/core/utils/custom_types.dart';
 import 'package:arch1/core/utils/enum.dart';
+import 'package:arch1/core/utils/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PaginatedListView<T> extends StatefulWidget {
   final PagingController<int, T> pagingController;
@@ -18,20 +20,34 @@ class PaginatedListView<T> extends StatefulWidget {
   final String? emptyViewDescription;
   final String? emptyViewButtonTxt;
   final ValueGetter<Future<bool>>? emptyViewButtonClickListener;
+  final bool isShimmerLoading;
+  final double shimmerItemsRadius;
+  final double shimmerAllPadding;
+  final double shimmerItemsMargin;
+  final Axis shimmerItemsScrollDirection;
+  final Color shimmerBaseColor;
+  final Color shimmerHighlightColor;
 
-  const PaginatedListView(
-      {required this.pagingController,
-        required this.itemBuilder,
-        this.viewOrientation = ViewOrientation.orientationVertical,
-        this.cellAspectRatio = 1,
-        this.cellWidth = 200,
-        this.emptyViewIconData,
-        this.emptyViewTitle,
-        this.emptyViewDescription,
-        this.emptyViewButtonTxt,
-        this.emptyViewButtonClickListener,
-        Key? key})
-      : super(key: key);
+  const PaginatedListView({
+    required this.pagingController,
+    required this.itemBuilder,
+    this.viewOrientation = ViewOrientation.orientationVertical,
+    this.cellAspectRatio = 1,
+    this.cellWidth = 200,
+    this.emptyViewIconData,
+    this.emptyViewTitle,
+    this.emptyViewDescription,
+    this.emptyViewButtonTxt,
+    this.emptyViewButtonClickListener,
+    this.isShimmerLoading = false,
+    this.shimmerItemsRadius = 8,
+    this.shimmerAllPadding = 0,
+    this.shimmerItemsMargin = 8,
+    this.shimmerItemsScrollDirection = Axis.vertical,
+    this.shimmerBaseColor = Colors.grey,
+    this.shimmerHighlightColor = Colors.white,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PaginatedListView> createState() => _PaginatedListViewState<T>();
@@ -54,127 +70,86 @@ class _PaginatedListViewState<T> extends State<PaginatedListView<T>> {
       itemBuilder: (context, item, index) =>
           _itemBuilder(item, index, cellHeight),
       firstPageErrorIndicatorBuilder: (_) => _buildErrorView(),
-      firstPageProgressIndicatorBuilder: (_) => _buildLoadingView(),
+      firstPageProgressIndicatorBuilder: (_) =>
+          _buildLoadingView(isShimmer: widget.isShimmerLoading),
       noItemsFoundIndicatorBuilder: (_) => _buildEmptyView(),
-      newPageProgressIndicatorBuilder: (_) => Container(),
+      newPageProgressIndicatorBuilder: (_) => const AppLoadingWidget(),
       newPageErrorIndicatorBuilder: (_) => Container(),
     );
     return widget.viewOrientation == ViewOrientation.orientationGrid
         ? PagedGridView<int, T>(
-        showNewPageProgressIndicatorAsGridChild: false,
-        showNewPageErrorIndicatorAsGridChild: false,
-        showNoMoreItemsIndicatorAsGridChild: false,
-        pagingController: _pagingController,
-        builderDelegate: pagedChildBuilderDelegate,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 5.h,
-          mainAxisSpacing: 5.h,
-          childAspectRatio: widget.cellAspectRatio,
-        ))
+            showNewPageProgressIndicatorAsGridChild: false,
+            showNewPageErrorIndicatorAsGridChild: false,
+            showNoMoreItemsIndicatorAsGridChild: false,
+            pagingController: _pagingController,
+            builderDelegate: pagedChildBuilderDelegate,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 5.h,
+              mainAxisSpacing: 5.h,
+              childAspectRatio: widget.cellAspectRatio,
+            ))
         : SizedBox(
-      height:
-      widget.viewOrientation == ViewOrientation.orientationHorizontal
-          ? cellHeight
-          : double.infinity,
-      child: PagedListView<int, T>(
-          scrollDirection: widget.viewOrientation ==
-              ViewOrientation.orientationHorizontal
-              ? Axis.horizontal
-              : Axis.vertical,
-          pagingController: _pagingController,
-          builderDelegate: pagedChildBuilderDelegate),
-    );
+            height:
+                widget.viewOrientation == ViewOrientation.orientationHorizontal
+                    ? cellHeight
+                    : double.infinity,
+            child: PagedListView<int, T>(
+                scrollDirection: widget.viewOrientation ==
+                        ViewOrientation.orientationHorizontal
+                    ? Axis.horizontal
+                    : Axis.vertical,
+                pagingController: _pagingController,
+                builderDelegate: pagedChildBuilderDelegate),
+          );
   }
 
   _itemBuilder(T item, int index, double cellHeight) {
     return widget.viewOrientation == ViewOrientation.orientationGrid
         ? widget.itemBuilder(item, index)
         : Container(
-      width: widget.cellWidth,
-      height: cellHeight,
-      padding: EdgeInsets.symmetric(
-        vertical: 5.h,
-      ),
-      child: widget.itemBuilder(item, index),
-    );
+            width: widget.cellWidth,
+            height: cellHeight,
+            padding: EdgeInsets.symmetric(
+              vertical: 5.h,
+            ),
+            child: widget.itemBuilder(item, index),
+          );
   }
 
   _buildEmptyView() {
     return EmptyErrorWidget(
-      icon: widget.emptyViewIconData,
-      title: widget.emptyViewTitle,
-      description: widget.emptyViewDescription ??
-          'no result',
-      hasButton: widget.emptyViewButtonTxt?.isNotEmpty == true,
-      buttonTxt: widget.emptyViewButtonTxt,
+      title: widget.emptyViewTitle ?? StringsManager.noDataFound,
+      description: widget.emptyViewDescription ?? StringsManager.tryRefreshPage,
+      hasButton: true,
+      buttonTxt: widget.emptyViewButtonTxt ?? StringsManager.tryAgain,
       buttonClickListener: widget.emptyViewButtonClickListener,
     );
   }
 
   _buildErrorView() {
-    if (_pagingController.error.errorCode == 0) {
-      return Container();
-    }
-    return EmptyErrorWidget(
-        description: _pagingController.error.errorMsg ??
-            'something went wrong',);
-  }
-
-  _buildLoadingView() {
-    var isGrid = widget.viewOrientation == ViewOrientation.orientationGrid;
-    var cellWidth = isGrid ? ScreenUtil().screenWidth * 0.45 : widget.cellWidth;
-    var cellHeight = cellWidth / widget.cellAspectRatio;
-    return Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
-        highlightColor: Colors.grey.shade100,
-        child: widget.viewOrientation == ViewOrientation.orientationHorizontal
-            ? Row(
-          children: [
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-          ],
-        )
-            : Column(
-          children: [
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-            _buildLoadingRow(cellWidth, cellHeight, isGrid),
-          ],
-        ));
-  }
-
-  _buildLoadingRow(double cellWidth, double cellHeight, bool isGrid) {
-    return Padding(
-      padding: EdgeInsets.all(8.w),
-      child: isGrid
-          ? Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            color: Colors.white,
-            width: cellWidth,
-            height: cellHeight,
-          ),
-          Container(
-            color: Colors.white,
-            width: cellWidth,
-            height: cellHeight,
-          ),
-        ],
-      )
-          : Container(
-        color: Colors.white,
-        width: cellWidth,
-        height: cellHeight,
-      ),
+    return AppErrorWidget(
+      description: _pagingController.error ?? StringsManager.somethingWentWrong,
+      hasButton: true,
+      buttonTxt: StringsManager.tryAgain,
+      buttonClickListener: widget.emptyViewButtonClickListener,
     );
+  }
+
+  _buildLoadingView({bool isShimmer = false}) {
+    // return const ;
+    return isShimmer
+        ? ShimmerLoadingParser(
+            orientation: widget.viewOrientation,
+            cellWidth: widget.cellWidth,
+            cellAspectRatio: widget.cellAspectRatio,
+            radius: widget.shimmerItemsRadius,
+            baseColor: widget.shimmerBaseColor,
+            highlightColor: widget.shimmerHighlightColor,
+            margin: widget.shimmerItemsMargin,
+            scrollDirection: widget.shimmerItemsScrollDirection,
+            padding: widget.shimmerAllPadding,
+          )
+        : const AppLoadingWidget();
   }
 }

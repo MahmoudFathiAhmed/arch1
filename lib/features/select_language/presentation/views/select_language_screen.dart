@@ -2,6 +2,7 @@ import 'package:arch1/core/extensions/extenstions.dart';
 import 'package:arch1/core/helpers/app_preferences.dart';
 import 'package:arch1/core/language/localization_helper.dart';
 import 'package:arch1/core/services/service_locator.dart';
+import 'package:arch1/core/utils/strings_manager.dart';
 import 'package:arch1/features/select_language/presentation/widgets/language_element.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class SelectLanguageScreen extends StatelessWidget {
                         ]);
                       }
                     : null,
-                language: 'english'),
+                language: StringsManager.english),
             LanguageElement(
                 isSelected: !isEnglish,
                 checkBoxOnTap: isEnglish
@@ -41,7 +42,7 @@ class SelectLanguageScreen extends StatelessWidget {
                         ]);
                       }
                     : null,
-                language: 'arabic'),
+                language: StringsManager.arabic),
           ],
         ),
       ),
