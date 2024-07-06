@@ -1,8 +1,4 @@
-import 'package:arch1/core/base_use_case/base_use_case.dart';
-import 'package:arch1/core/error/failure.dart';
-import 'package:arch1/features/start/data/models/post.dart';
-import 'package:arch1/features/start/domain/repository/base_start_repository.dart';
-import 'package:equatable/equatable.dart';
+import 'package:arch1/features/start/export/start_export.dart';
 
 class GetPostsUseCase extends BaseUseCase<List<Post>, GetPostsParameters> {
   final BaseStartRepository baseStartRepository;
@@ -14,10 +10,13 @@ class GetPostsUseCase extends BaseUseCase<List<Post>, GetPostsParameters> {
     return await baseStartRepository.getPosts(parameters);
   }
 }
-class GetPostsParameters extends Equatable{
+
+class GetPostsParameters extends Equatable {
   final int startIndex;
   final int limit;
-  const GetPostsParameters({ required this.startIndex, required this.limit});
+
+  const GetPostsParameters({required this.startIndex, required this.limit});
+
   @override
-  List<Object> get props => [startIndex,limit];
+  List<Object> get props => [startIndex, limit];
 }

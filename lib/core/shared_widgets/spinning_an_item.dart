@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class SpinningAnItemWidget extends StatefulWidget {
@@ -7,7 +8,7 @@ class SpinningAnItemWidget extends StatefulWidget {
   final Duration duration;
 
   const SpinningAnItemWidget(
-      {super.key, required this.widget, this.duration = const Duration(seconds: 5)});
+      {super.key, required this.widget, this.duration = const Duration(seconds: AppInt.i5)});
 
   @override
   State<SpinningAnItemWidget> createState() => _SpinningAnItemWidgetState();
@@ -41,7 +42,7 @@ class _SpinningAnItemWidgetState extends State<SpinningAnItemWidget>
         animation: _controller,
         builder: (_, child) {
           return Transform.rotate(
-            angle: _controller.value * 2 * math.pi,
+            angle: _controller.value * AppDouble.d2 * math.pi,
             child: child,
           );
         },

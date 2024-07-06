@@ -1,3 +1,5 @@
+import 'package:arch1/core/utils/values_manager.dart';
+
 class Parser {
   ///parse dynamic value to double
   /// Returns:
@@ -8,19 +10,19 @@ class Parser {
   /// - `0.0` for all other types
   static double parseToDouble(dynamic value) {
     if (value == null) {
-      return 0.0;
+      return AppDouble.d0;
     } else if (value is double) {
       return value;
     } else if (value is int) {
       return value.toDouble();
     } else if (value is String) {
       try {
-        return value.isNotEmpty ? double.parse(value) : 0.0;
+        return value.isNotEmpty ? double.parse(value) : AppDouble.d0;
       } on FormatException{
-        return 0.0;
+        return AppDouble.d0;
       }
     } else {
-      return 0.0;
+      return AppDouble.d0;
     }
   }
 
@@ -33,7 +35,7 @@ class Parser {
   /// - `0` for all other types
   static int parseToInt(dynamic value) {
     if (value == null) {
-      return 0;
+      return AppInt.i0;
     }
     else if(value is int) {
       return value;
@@ -45,13 +47,13 @@ class Parser {
         return int.parse(value);
       } on FormatException {
         try{
-          return (value.isNotEmpty ? double.parse(value) : 0.0).toInt();
+          return (value.isNotEmpty ? double.parse(value) : AppDouble.d0).toInt();
         }on FormatException{
-          return 0;
+          return AppInt.i0;
         }
       }
     } else {
-      return 0;
+      return AppInt.i0;
     }
   }
 

@@ -1,5 +1,9 @@
 class StringsManager{
   static const String appName = 'appName';
+  static const String emptyString = '';
+  //localization
+  static const String en = 'en';
+  static const String ar = 'ar';
   // responses messages
   static const String successMessage = "success_message";
   static const String badResponseError = "bad_response_error";
@@ -15,13 +19,17 @@ class StringsManager{
   static const String noInternetConnectionError = "no_internet_connection_error";
   static const String badCertificateError = "bad_certificate_error";
   static const String unKnownError = "unKnown_error";
-
+  //change language
   static const String arabic = 'arabic';
   static const String english = 'english';
-  static const String tryAgain = 'try_again';
+  //empty, errors, refreshing
   static const String tryRefreshPage = 'try_refresh_page';
   static const String somethingWentWrong = 'something_went_wrong';
   static const String noDataFound = 'no_data_found';
+  static const String tryAgain = 'try_again';
+  //exit app
+  static const String surExitApp = 'sure_exit_app';
+  static const String yes = 'yes';
+  static const String no = 'no';
 
-//
 }

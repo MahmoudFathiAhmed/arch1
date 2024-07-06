@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,11 +19,11 @@ class _SlidableCardsState extends State<SlidableCards> {
   void initState() {
     super.initState();
     // _page = 10;
-    _page = widget.networkImagesList.length-1;
+    _page = widget.networkImagesList.length-AppDouble.d1;
   }
   @override
   Widget build(BuildContext context) {
-    double width = 1.sw;
+    double width = AppDouble.d1.sw;
     PageController pageController;
     // pageController = PageController(initialPage: 10);
     pageController = PageController(initialPage: widget.networkImagesList.length-1);
@@ -43,28 +44,28 @@ class _SlidableCardsState extends State<SlidableCards> {
           children: [
             SizedBox(
               height: width,
-              width: width * .95,
+              width: width * AppDouble.d0_95,
               child: LayoutBuilder(
                 builder: (context, boxConstraints) {
                   List<Widget> cards = List.empty(growable: true);
 
                   // for (int i = 0; i <= 11; i++) {
-                  for (int i = 0; i <= widget.networkImagesList.length-1; i++) {
+                  for (int i = AppInt.i0; i <= widget.networkImagesList.length-AppInt.i1; i++) {
                     double currentPageValue = i - _page;
                     // int currentPageValue = i - _page;
-                    bool pageLocation = currentPageValue > 0;
+                    bool pageLocation = currentPageValue > AppDouble.d0;
 
-                    double start = 20 +
+                    double start = AppDouble.d20 +
                         max(
-                            (boxConstraints.maxWidth - width * .75) -
-                                ((boxConstraints.maxWidth - width * .75) / 2) *
+                            (boxConstraints.maxWidth - width * AppDouble.d0_75) -
+                                ((boxConstraints.maxWidth - width * AppDouble.d0_75) / AppDouble.d2) *
                                     -currentPageValue *
-                                    (pageLocation ? 9 : 1),
-                            0.0);
+                                    (pageLocation ? AppDouble.d9 : AppDouble.d1),
+                            AppDouble.d0);
 
                     var customizableCard = Positioned.directional(
-                      top: 20 + 30 * max(-currentPageValue.toDouble(), 0.0),
-                      bottom: 20 + 30 * max(-currentPageValue.toDouble(), 0.0),
+                      top: AppDouble.d20 + AppDouble.d30 * max(-currentPageValue.toDouble(), AppDouble.d0),
+                      bottom: AppDouble.d20 + AppDouble.d30 * max(-currentPageValue.toDouble(),AppDouble.d0),
                       start: start,
                       textDirection: TextDirection.ltr,
                       child: Container(
@@ -73,14 +74,14 @@ class _SlidableCardsState extends State<SlidableCards> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               // color: Colors.teal,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(AppDouble.d20),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.white.withOpacity(.15),
-                                    blurRadius: 10),
+                                    color: Colors.white.withOpacity(AppDouble.d0_15),
+                                    blurRadius: AppDouble.d10),
                               ]),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(AppDouble.d20),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             child: Image.network(
                               // 'https://picsum.photos/id/$i/800/1200',

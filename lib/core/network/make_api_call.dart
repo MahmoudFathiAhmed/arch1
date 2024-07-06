@@ -4,7 +4,6 @@ import 'package:arch1/core/network/dio_factory.dart';
 import 'package:arch1/core/services/service_locator.dart';
 import 'package:arch1/core/utils/values_manager.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 Future<T> makeApiCall<T>({
   required String url,

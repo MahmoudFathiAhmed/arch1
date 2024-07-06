@@ -1,9 +1,5 @@
-import 'dart:async';
+import 'package:arch1/features/start/export/start_export.dart';
 
-import 'package:arch1/features/start/data/models/post.dart';
-import 'package:arch1/features/start/domain/use_case/get_posts_use_case.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 
 part 'get_posts_event.dart';
 

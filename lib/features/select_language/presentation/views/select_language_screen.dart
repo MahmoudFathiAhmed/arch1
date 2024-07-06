@@ -1,10 +1,4 @@
-import 'package:arch1/core/extensions/extenstions.dart';
-import 'package:arch1/core/helpers/app_preferences.dart';
-import 'package:arch1/core/language/localization_helper.dart';
-import 'package:arch1/core/services/service_locator.dart';
-import 'package:arch1/core/utils/strings_manager.dart';
-import 'package:arch1/features/select_language/presentation/widgets/language_element.dart';
-import 'package:flutter/material.dart';
+import 'package:arch1/features/select_language/export/select_language_export.dart';
 
 class SelectLanguageScreen extends StatelessWidget {
   const SelectLanguageScreen({

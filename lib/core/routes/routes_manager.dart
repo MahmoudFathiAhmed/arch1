@@ -1,4 +1,4 @@
-import 'package:arch1/features/bottom_nav_bar/presentation/views/bottom_navigation_bar_screen.dart';
+import 'package:arch1/features/bottom_navigation_bar/presentation/views/bottom_navigation_bar_screen.dart';
 import 'package:arch1/features/select_language/presentation/views/select_language_screen.dart';
 import 'package:arch1/features/start/presentation/views/start_screen.dart';
 import 'package:flutter/material.dart';

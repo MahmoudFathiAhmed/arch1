@@ -1,3 +1,4 @@
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 //adjust theme from theme manager
 class ExpandableWidget extends StatelessWidget {
@@ -33,9 +34,9 @@ class ExpandableWidget extends StatelessWidget {
       this.iconColor,
       this.collapsedIconColor,
       this.alignment,
-      this.borderRadius = 15,
+      this.borderRadius = AppDouble.d15,
       this.borderColor = Colors.white,
-      this.allPadding = 12});
+      this.allPadding = AppDouble.d12});
 
   @override
   Widget build(BuildContext context) {

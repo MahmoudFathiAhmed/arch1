@@ -10,6 +10,3 @@ class ResponseFailure extends Failure{
   final String enMessage;
   ResponseFailure(super.code, super.message, this.arMessage, this.enMessage);
 }
-class CacheFailure extends Failure{
-  CacheFailure() : super(0, "Cache Failure");
-}

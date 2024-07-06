@@ -1,5 +1,7 @@
 
 import 'package:arch1/core/language/language.dart';
+import 'package:arch1/core/utils/strings_manager.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,15 +54,15 @@ class AppPreferences {
   }
 
   Future<double> getDouble(String key) async {
-    return _sharedPreferences.getDouble(key) ?? 0.0;
+    return _sharedPreferences.getDouble(key) ?? AppDouble.d0;
   }
 
   Future<int> getInt(String key) async {
-    return _sharedPreferences.getInt(key) ?? 0;
+    return _sharedPreferences.getInt(key) ?? AppInt.i0;
   }
 
   Future<String> getString(String key) async {
-    return _sharedPreferences.getString(key) ?? '';
+    return _sharedPreferences.getString(key) ?? StringsManager.emptyString;
   }
 
   
@@ -70,7 +72,7 @@ class AppPreferences {
   }
 
   Future<String> getSecuredString(String key) async {
-    return await _secureStorage.read(key: key) ?? '';
+    return await _secureStorage.read(key: key) ?? StringsManager.emptyString;
   }
 
   Future<void> clearAllSecuredData() async {

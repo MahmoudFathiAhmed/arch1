@@ -1,4 +1,6 @@
 import 'dart:math';
+
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 
 
@@ -6,7 +8,7 @@ class SpinnerLoading extends StatefulWidget {
   /// x is the speed of the spinner if x=.5 it will be 2 times faster
   final double x;
   final Color color;
-  const SpinnerLoading({super.key, this.x=.5, this.color = Colors.blue});
+  const SpinnerLoading({super.key, this.x=AppDouble.d0_5, this.color = Colors.blue});
 
   @override
   State<SpinnerLoading> createState() => _SpinnerLoadingState();
@@ -33,7 +35,7 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
     super.initState();
 
     firstController =
-        AnimationController(vsync: this, duration:  Duration(milliseconds: (6000*widget.x).toInt()));
+        AnimationController(vsync: this, duration:  Duration(milliseconds: (AppInt.i6000*widget.x).toInt()));
     firstAnimation = Tween<double>(begin: -pi, end: pi).animate(firstController)
       ..addListener(() {
         setState(() {});
@@ -47,7 +49,7 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
       });
 
     secondController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: (3000*widget.x).toInt()));
+        AnimationController(vsync: this, duration: Duration(milliseconds: (AppInt.i3000*widget.x).toInt()));
     secondAnimation =
     Tween<double>(begin: -pi, end: pi).animate(secondController)
       ..addListener(() {
@@ -62,7 +64,7 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
       });
 
     thirdController =
-        AnimationController(vsync: this, duration: Duration(milliseconds:(2000*widget.x).toInt() ));
+        AnimationController(vsync: this, duration: Duration(milliseconds:(AppInt.i2000*widget.x).toInt() ));
     thirdAnimation = Tween<double>(begin: -pi, end: pi).animate(thirdController)
       ..addListener(() {
         setState(() {});
@@ -76,7 +78,7 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
       });
 
     fourthController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: (1500*widget.x).toInt()));
+        vsync: this, duration: Duration(milliseconds: (AppInt.i1500*widget.x).toInt()));
     fourthAnimation =
     Tween<double>(begin: -pi, end: pi).animate(fourthController)
       ..addListener(() {
@@ -91,7 +93,7 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
       });
 
     fifthController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: (1000*widget.x).toInt()));
+        AnimationController(vsync: this, duration: Duration(milliseconds: (AppInt.i1000*widget.x).toInt()));
     fifthAnimation = Tween<double>(begin: -pi, end: pi).animate(fifthController)
       ..addListener(() {
         setState(() {});
@@ -124,8 +126,8 @@ class _SpinnerLoadingState extends State<SpinnerLoading> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
-      width: 100,
+      height: AppDouble.d100,
+      width: AppDouble.d100,
       child: CustomPaint(
         painter: MyPainter(
           firstAnimation.value,
@@ -162,66 +164,66 @@ class MyPainter extends CustomPainter {
     Paint myArc = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 5
+      ..strokeWidth = AppDouble.d5
       ..strokeCap = StrokeCap.round;
 
     canvas.drawArc(
       Rect.fromLTRB(
-        0,
-        0,
+        AppDouble.d0,
+        AppDouble.d0,
         size.width,
         size.height,
       ),
       firstAngle,
-      2,
+      AppDouble.d2,
       false,
       myArc,
     );
     canvas.drawArc(
       Rect.fromLTRB(
-        size.width * .1,
-        size.height * .1,
-        size.width * .9,
-        size.height * .9,
+        size.width * AppDouble.d0_1,
+        size.height * AppDouble.d0_1,
+        size.width * AppDouble.d0_9,
+        size.height * AppDouble.d0_9,
       ),
       secondAngle,
-      2,
+      AppDouble.d2,
       false,
       myArc,
     );
     canvas.drawArc(
       Rect.fromLTRB(
-        size.width * .2,
-        size.height * .2,
-        size.width * .8,
-        size.height * .8,
+        size.width * AppDouble.d0_2,
+        size.height * AppDouble.d0_2,
+        size.width * AppDouble.d0_8,
+        size.height * AppDouble.d0_8,
       ),
       thirdAngle,
-      2,
+      AppDouble.d2,
       false,
       myArc,
     );
     canvas.drawArc(
       Rect.fromLTRB(
-        size.width * .3,
-        size.height * .3,
-        size.width * .7,
-        size.height * .7,
+        size.width * AppDouble.d0_3,
+        size.height * AppDouble.d0_3,
+        size.width * AppDouble.d0_7,
+        size.height * AppDouble.d0_7,
       ),
       fourthAngle,
-      2,
+      AppDouble.d2,
       false,
       myArc,
     );
     canvas.drawArc(
       Rect.fromLTRB(
-        size.width * .4,
-        size.height * .4,
-        size.width * .6,
-        size.height * .6,
+        size.width * AppDouble.d0_4,
+        size.height * AppDouble.d0_4,
+        size.width * AppDouble.d0_6,
+        size.height * AppDouble.d0_6,
       ),
       fifthAngle,
-      2,
+      AppDouble.d2,
       false,
       myArc,
     );

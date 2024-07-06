@@ -1,3 +1,4 @@
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBarView extends StatefulWidget {
@@ -13,7 +14,7 @@ class CustomTabBarView extends StatefulWidget {
       {super.key,
       required this.tabs,
       required this.children,
-      this.spaceFromHeight = 0,
+      this.spaceFromHeight = AppDouble.d0,
       this.bgColor,
       this.labelColor,
       this.unSelectedLabelColor,
@@ -93,7 +94,7 @@ class CustomTabBar extends StatelessWidget {
         controller: controller,
         isScrollable: true,
         labelColor: labelColor,
-        dividerHeight: 0,
+        dividerHeight: AppDouble.d0,
         unselectedLabelColor: unSelectedLabelColor,
         indicatorColor: indicatorColor,
         tabAlignment: TabAlignment.start,

@@ -1,5 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:arch1/features/bottom_navigation_bar/export/bottom_navigation_export.dart';
+
 
 part 'bottom_navigation_state.dart';
 

@@ -1,4 +1,5 @@
 import 'package:arch1/core/utils/assets_manager.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,16 +14,16 @@ class EmptyErrorWidget extends StatelessWidget {
   final String? buttonTxt;
   final ValueGetter<Future<bool>>? buttonClickListener;
 
-  const EmptyErrorWidget(
-      {this.icon,
-      this.title,
-      required this.description,
-      this.isEmptyView = true,
-      this.hasButton = false,
-      this.buttonTxt,
-      this.buttonClickListener,
-      Key? key,})
-      : super(key: key);
+  const EmptyErrorWidget({
+    this.icon,
+    this.title,
+    required this.description,
+    this.isEmptyView = true,
+    this.hasButton = false,
+    this.buttonTxt,
+    this.buttonClickListener,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +34,8 @@ class EmptyErrorWidget extends StatelessWidget {
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Container(
-                height: .5.sh,
-                margin: EdgeInsets.symmetric(vertical: 40.h, horizontal: 20.w),
+                height: AppDouble.d0_5.sh,
+                margin: EdgeInsets.symmetric(vertical: AppDouble.d40.h, horizontal: AppDouble.d20.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,18 +47,11 @@ class EmptyErrorWidget extends StatelessWidget {
                               (isEmptyView
                                   ? ImageAssets.noContent
                                   : ImageAssets.error),
-                              width: 80.w,
-                              height: 80.w,
+                              width: AppDouble.d80.w,
+                              height: AppDouble.d80.w,
                             ),
-                        // Icon(
-                        //   (isEmptyView
-                        //       ? Icons.text_snippet_sharp
-                        //       : Icons.report),
-                        //   size: 80.w,
-                        //   color: Colors.grey,
-                        // ),
                         SizedBox(
-                          height: 15.h,
+                          height: AppDouble.d15.h,
                         ),
                         if (title?.isNotEmpty == true)
                           Text(
@@ -70,7 +64,7 @@ class EmptyErrorWidget extends StatelessWidget {
                           ).tr(),
                         if (title?.isNotEmpty == true)
                           SizedBox(
-                            height: 10.h,
+                            height: AppDouble.d10.h,
                           ),
                         Text(
                           description,
@@ -81,7 +75,7 @@ class EmptyErrorWidget extends StatelessWidget {
                               .copyWith(color: Colors.grey),
                         ).tr(),
                         SizedBox(
-                          height: 20.h,
+                          height: AppDouble.d20.h,
                         ),
                       ],
                     ),
@@ -114,14 +108,13 @@ class DialogEmptyErrorWidget extends StatelessWidget {
 
   const DialogEmptyErrorWidget(
       {this.icon,
-        this.title,
-        required this.description,
-        this.isEmptyView = true,
-        this.hasButton = false,
-        this.buttonTxt,
-        this.buttonClickListener,
-        Key? key,})
-      : super(key: key);
+      this.title,
+      required this.description,
+      this.isEmptyView = true,
+      this.hasButton = false,
+      this.buttonTxt,
+      this.buttonClickListener,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -136,14 +129,12 @@ class DialogEmptyErrorWidget extends StatelessWidget {
               children: [
                 icon ??
                     SvgPicture.asset(
-                      (isEmptyView
-                          ? ImageAssets.noContent
-                          : ImageAssets.error),
-                      width: 80.w,
-                      height: 80.w,
+                      (isEmptyView ? ImageAssets.noContent : ImageAssets.error),
+                      width: AppDouble.d80.w,
+                      height: AppDouble.d80.w,
                     ),
                 SizedBox(
-                  height: 15.h,
+                  height: AppDouble.d15.h,
                 ),
                 if (title?.isNotEmpty == true)
                   Text(
@@ -156,7 +147,7 @@ class DialogEmptyErrorWidget extends StatelessWidget {
                   ).tr(),
                 if (title?.isNotEmpty == true)
                   SizedBox(
-                    height: 10.h,
+                    height: AppDouble.d10.h,
                   ),
                 Text(
                   description,
@@ -167,7 +158,7 @@ class DialogEmptyErrorWidget extends StatelessWidget {
                       .copyWith(color: Colors.grey),
                 ).tr(),
                 SizedBox(
-                  height: 20.h,
+                  height: AppDouble.d20.h,
                 ),
               ],
             ),
@@ -179,6 +170,7 @@ class DialogEmptyErrorWidget extends StatelessWidget {
         ));
   }
 }
+
 class MyBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(

@@ -1,9 +1,11 @@
+import 'package:arch1/core/utils/values_manager.dart';
+
 enum RequestState { loading, loaded, error }
 enum ViewOrientation {
-  orientationVertical(0),
-  orientationHorizontal(1),
-  orientationGrid(2),
-  orientationFlexibleRow(3);
+  orientationVertical(AppInt.i0),
+  orientationHorizontal(AppInt.i1),
+  orientationGrid(AppInt.i2),
+  orientationFlexibleRow(AppInt.i3);
 
   final int value;
 

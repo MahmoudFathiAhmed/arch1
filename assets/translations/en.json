@@ -18,6 +18,9 @@
   "try_again": "Try Again",
   "something_went_wrong": "Something went wrong, try again",
   "try_refresh_page": "Try Refreshing The Page",
-  "no_data_found": "No Data Found"
+  "no_data_found": "No Data Found",
+  "sure_exit_app": "Are you sure you want to exit the app?",
+  "yes": "Yes",
+  "no": "No"
 
 }

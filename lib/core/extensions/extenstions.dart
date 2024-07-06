@@ -1,3 +1,5 @@
+import 'package:arch1/core/utils/strings_manager.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -41,16 +43,16 @@ extension NavigationExtesnions on BuildContext {
 
 extension LanguageExtensions on BuildContext {
   /// determines if language is arabic?
-  bool get isArabic => EasyLocalization.of(this)!.locale.languageCode == 'ar';
+  bool get isArabic => EasyLocalization.of(this)!.locale.languageCode == StringsManager.ar;
   /// determines if language is english
-  bool get isEnglish => EasyLocalization.of(this)!.locale.languageCode == 'en';
+  bool get isEnglish => EasyLocalization.of(this)!.locale.languageCode == StringsManager.en;
 
   String get getLanguageCode => EasyLocalization.of(this)!.locale.languageCode;
 }
 
 extension StringExtensions on String? {
   /// check if string is null or empty
-  bool isNullOrEmpty() => this == null || this == "";
+  bool isNullOrEmpty() => this == null || this == StringsManager.emptyString;
 }
 
 extension BoolExtensions on bool? {
@@ -66,11 +68,11 @@ extension ListExtensions<T> on List<T>? {
 
 extension ParseToDoubleExtension on dynamic {
   double parseToDouble() {
-    if (this == null) return 0.0;
+    if (this == null) return AppDouble.d0;
     if (this is int) {
       return (this as int).toDouble();
     } else if (this is String) {
-      return this.isNotEmpty ? double.tryParse(this) ?? 0.0 : 0.0;
+      return this.isNotEmpty ? double.tryParse(this) ?? AppDouble.d0 : AppDouble.d0;
     } else if (this is double) {
       return this;
     } else {

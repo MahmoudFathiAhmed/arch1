@@ -1,13 +1,14 @@
 import 'package:arch1/core/extensions/extenstions.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 //DraggableScrollableSheet in builder to expand bottom sheet to take full screen by dragging it up
 Future<dynamic> buildAppBottomSheet(
     BuildContext context, {
       required Widget content,
       Color? backgroundColor,
-      double radius = 15,
+      double radius = AppDouble.d1,
       bool isDismissible = true,
-      double heightFactor = 0.5,
+      double heightFactor = AppDouble.d0_5,
     }) {
   return showModalBottomSheet(
     context: context,

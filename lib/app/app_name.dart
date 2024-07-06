@@ -1,13 +1,4 @@
-import 'package:arch1/core/extensions/extenstions.dart';
-import 'package:arch1/core/helpers/app_preferences.dart';
-import 'package:arch1/core/routes/routes_manager.dart';
-import 'package:arch1/core/services/service_locator.dart';
-import 'package:arch1/core/utils/themes_manager.dart';
-import 'package:arch1/features/bottom_nav_bar/presentation/cubit/bottom_navigation_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:arch1/app/app_export.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp._internal();
@@ -32,17 +23,17 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(context.pixelToDp(1290), context.pixelToDp(2796)),
+        designSize: Size(context.pixelToDp(AppConstants.appWidthPixels),
+            context.pixelToDp(AppConstants.appHeightPixels)),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (_, child) =>
-            BlocProvider(
+        builder: (_, child) => BlocProvider(
               create: (context) => BottomNavigationCubit(),
               child: MaterialApp(
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
-                title: 'AppName',
+                title: StringsManager.appName,
                 debugShowCheckedModeBanner: false,
                 theme: getApplicationTheme(),
                 onGenerateRoute: RouteGenerator.getRoute,

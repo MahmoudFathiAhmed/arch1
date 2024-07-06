@@ -11,21 +11,24 @@ class BaseViewWidget extends StatelessWidget {
   final Color? statusBarColor;
   final Widget? drawer;
   final bool resizeToAvoidBottomInset;
+  final EdgeInsets? padding;
 
   //View
   final Widget body;
   final SystemUiOverlayStyle systemUiOverlayStyle;
 
-  BaseViewWidget(
-      {this.hasRefresh = false,
-      this.onRefreshListener,
-      this.statusBarColor,
-      this.resizeToAvoidBottomInset = true,
-      this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
-      required this.body,
-      super.key,
-      this.appBar,
-      this.drawer});
+  BaseViewWidget({
+    this.hasRefresh = false,
+    this.onRefreshListener,
+    this.statusBarColor,
+    this.resizeToAvoidBottomInset = true,
+    this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
+    this.appBar,
+    this.padding,
+    this.drawer,
+    required this.body,
+    super.key,
+  });
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -48,7 +51,6 @@ class BaseViewWidget extends StatelessWidget {
         ? RefreshIndicator(
             triggerMode: RefreshIndicatorTriggerMode.anywhere,
             onRefresh: onRefreshListener!,
-            
             child: body,
           )
         : body;

@@ -14,7 +14,7 @@ class ShimmerLoadingParser extends StatelessWidget {
   final double margin;
 
   const ShimmerLoadingParser({
-    Key? key,
+    super.key,
     required this.orientation,
     required this.cellWidth,
     required this.cellAspectRatio,
@@ -24,7 +24,7 @@ class ShimmerLoadingParser extends StatelessWidget {
     this.highlightColor = Colors.white,
     this.padding = 0,
     this.scrollDirection = Axis.vertical,
-  }) : super(key: key);
+  });
 
   double get cellHeight => cellWidth / cellAspectRatio;
 

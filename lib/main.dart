@@ -1,6 +1,7 @@
 import 'package:arch1/app/app_name.dart';
 import 'package:arch1/core/language/language.dart';
 import 'package:arch1/core/services/service_locator.dart';
+import 'package:arch1/core/utils/strings_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,8 @@ void main() async {
   ServicesLocator().init();
   runApp(EasyLocalization(
       supportedLocales: const [englishLocale, arabicLocale],
-      fallbackLocale: const Locale('en'),
-      startLocale: const Locale('en'),
+      fallbackLocale: const Locale(StringsManager.en),
+      startLocale: const Locale(StringsManager.en),
       path: localizationPath,
       child: MyApp()));
 }

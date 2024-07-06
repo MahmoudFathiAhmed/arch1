@@ -46,8 +46,8 @@ class PaginatedListView<T> extends StatefulWidget {
     this.shimmerItemsScrollDirection = Axis.vertical,
     this.shimmerBaseColor = Colors.grey,
     this.shimmerHighlightColor = Colors.white,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<PaginatedListView> createState() => _PaginatedListViewState<T>();

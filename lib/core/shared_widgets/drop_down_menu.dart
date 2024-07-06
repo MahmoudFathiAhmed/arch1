@@ -1,6 +1,9 @@
 import 'package:arch1/core/utils/custom_types.dart';
+import 'package:arch1/core/utils/strings_manager.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 //just modify styles and borders validation
 class CustomDropdownButton<T> extends StatefulWidget {
   final T? value;
@@ -16,7 +19,7 @@ class CustomDropdownButton<T> extends StatefulWidget {
   final DropDownItemChange<T>? dropDownItemChange;
 
   const CustomDropdownButton({
-    Key? key,
+    super.key,
     required this.itemsList,
     this.value,
     this.hint,
@@ -24,12 +27,11 @@ class CustomDropdownButton<T> extends StatefulWidget {
     this.isEnabled = true,
     this.isRequired = false,
     this.showMenuTitle = false,
-    this.menuMaxHeight = 300,
+    this.menuMaxHeight = AppDouble.d300,
     required this.dropDownItemName,
     this.dropDownItemChange,
     this.initSelectedItem,
-
-  }) : super(key: key);
+  });
 
   @override
   State<CustomDropdownButton<T>> createState() =>
@@ -52,30 +54,34 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton<T>> {
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<T>(
           value: _selectedValue,
-          icon: widget.icon != null ? Icon(widget.icon,) : null,
+          icon: widget.icon != null
+              ? Icon(
+                  widget.icon,
+                )
+              : null,
           isExpanded: true,
           menuMaxHeight: widget.menuMaxHeight.h,
           dropdownColor: Colors.white,
           // dropdownColor: Theme.of(context).scaffoldBackgroundColor,
-          style: const TextStyle(color: Colors.indigo),//style
+          style: const TextStyle(color: Colors.indigo),
+          //style
           items: _buildMenuItems(),
           validator: (value) {
             return widget.isRequired && _selectedValue == null
-                ? "${widget.hint} ${""
-            }"
+                ? "${widget.hint} ${""}"
                 : null;
           },
           onChanged: widget.isEnabled
               ? (T? newValue) {
-            if (newValue != null) {
-              if (widget.dropDownItemChange != null) {
-                widget.dropDownItemChange!(newValue);
-              }
-              setState(() {
-                _selectedValue = newValue;
-              });
-            }
-          }
+                  if (newValue != null) {
+                    if (widget.dropDownItemChange != null) {
+                      widget.dropDownItemChange!(newValue);
+                    }
+                    setState(() {
+                      _selectedValue = newValue;
+                    });
+                  }
+                }
               : null,
           hint: widget.hint != null
               ? Text(
@@ -88,16 +94,14 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton<T>> {
     );
   }
 
-
   List<DropdownMenuItem<T>> _buildMenuItems() {
     var list = List<DropdownMenuItem<T>>.empty(growable: true);
     if (widget.showMenuTitle) {
       list.add(DropdownMenuItem<T>(
         enabled: false,
         value: null,
-        child:
-        Text(
-          widget.hint??"",
+        child: Text(
+          widget.hint ?? StringsManager.emptyString,
           // style: ,
         ),
       ));

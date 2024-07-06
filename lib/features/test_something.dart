@@ -1,9 +1,8 @@
-import 'package:arch1/core/extensions/extenstions.dart';
+import 'package:arch1/core/shared_widgets/app_slider_view.dart';
 import 'package:arch1/core/shared_widgets/base_view_widget.dart';
-import 'package:arch1/core/shared_widgets/custom_drawer.dart';
-import 'package:arch1/core/shared_widgets/shimmer_loading_parser.dart';
-import 'package:arch1/core/utils/enum.dart';
+import 'package:arch1/core/shared_widgets/exit_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TestSomething extends StatefulWidget {
   const TestSomething({super.key});
@@ -13,27 +12,33 @@ class TestSomething extends StatefulWidget {
 }
 
 class _TestSomethingState extends State<TestSomething> {
-
   @override
   Widget build(BuildContext context) {
-    return BaseViewWidget(
-      appBar: AppBar(backgroundColor: Colors.blue,),
-        drawer: const CustomDrawer(items: [],),
-        hasRefresh: true,
-        onRefreshListener: ()async{
-        print('x');
-        return true;
-        },
-        body: ShimmerLoadingParser(
-          orientation: ViewOrientation.orientationGrid,
-          cellWidth: context.width*.4,
-          cellAspectRatio: 1,
-          margin: 4,
-          padding: 18,
-          radius: 8,
-          baseColor: Colors.grey,
-          scrollDirection: Axis.vertical,
-          highlightColor: Colors.white,
-        ));
+    return PopScope(
+      onPopInvoked: (popInvocation) {
+        exitDialog(context);
+      },
+      child: BaseViewWidget(
+          appBar: AppBar(
+            backgroundColor: Colors.blue,
+            actions: [
+              IconButton(onPressed: (){
+                exitDialog(context);
+              }, icon: const Icon(Icons.exit_to_app))
+            ],
+          ),
+          body: Column(
+            children: [
+              AppSliderView(
+                imagesUrls: List.generate(3, (i) => "https://picsum.photos/id/${i+30}/1200/600"),
+                aspectRatio: 1.8,
+                width: 1.sw,
+                fit: BoxFit.cover,
+              )
+            ],
+          ))
+    );
   }
+
+
 }

@@ -4,8 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class AppWebViewScreen extends StatefulWidget {
   final String initialUrl;
 
-  const AppWebViewScreen({Key? key, required this.initialUrl})
-      : super(key: key);
+  const AppWebViewScreen({super.key, required this.initialUrl});
 
   @override
   State<AppWebViewScreen> createState() => _CustomWebViewState();
@@ -14,25 +13,27 @@ class AppWebViewScreen extends StatefulWidget {
 class _CustomWebViewState extends State<AppWebViewScreen> {
   late final WebViewController _controller;
   PlatformWebViewControllerCreationParams params =
-  const PlatformWebViewControllerCreationParams();
+      const PlatformWebViewControllerCreationParams();
+
   @override
   void initState() {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(NavigationDelegate(
+      ..setNavigationDelegate(
+        NavigationDelegate(
           // Handle navigation events (optional)
-        onPageStarted: (String url) {},
-        onPageFinished: (String url) {},
-        onHttpError: (HttpResponseError error) {},
-        onWebResourceError: (WebResourceError error) {},
-        // onNavigationRequest: (NavigationRequest request) {
-        //   if (request.url.startsWith('https://www.youtube.com/')) {
-        //     return NavigationDecision.prevent;
-        //   }
-        //   return NavigationDecision.navigate;
-        // },
-      ),
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
+          onHttpError: (HttpResponseError error) {},
+          onWebResourceError: (WebResourceError error) {},
+          // onNavigationRequest: (NavigationRequest request) {
+          //   if (request.url.startsWith('https://www.youtube.com/')) {
+          //     return NavigationDecision.prevent;
+          //   }
+          //   return NavigationDecision.navigate;
+          // },
+        ),
       )
       ..setBackgroundColor(const Color(0x00000000))
       ..loadRequest(Uri.parse(widget.initialUrl));
@@ -41,7 +42,7 @@ class _CustomWebViewState extends State<AppWebViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Custom WebView')),
+      appBar: AppBar(title: const Text('app bar web view')),
       body: WebViewWidget(controller: _controller),
     );
   }

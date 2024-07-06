@@ -1,3 +1,4 @@
+import 'package:arch1/core/utils/font_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,7 +20,7 @@ class CustomInputField extends StatelessWidget {
   final BoxConstraints? prefixIconConstraints;
   final List<TextInputFormatter>? inputFormatters;
   const CustomInputField(
-      {Key? key,
+      {super.key,
         this.controller,
         this.validator,
         this.obscureText = false,
@@ -30,13 +31,12 @@ class CustomInputField extends StatelessWidget {
         this.enabled = true,
         this.onChanged,
         this.focusNode,
-        this.textFontSize = 14,
+        this.textFontSize = FontSize.s14,
         this.textColor = Colors.black,
         this.errorText,
         this.prefixIcon,
         this.prefixIconConstraints,
-        this.inputFormatters,})
-      : super(key: key);
+        this.inputFormatters,});
 
   @override
   Widget build(BuildContext context) {

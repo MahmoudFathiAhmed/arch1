@@ -1,10 +1,8 @@
-import 'package:arch1/features/bottom_nav_bar/presentation/cubit/bottom_navigation_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:arch1/features/bottom_navigation_bar/export/bottom_navigation_export.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int screenIndex;
-  final double radius = 20.0;
+  final double radius = AppDouble.d20;
   final List<BoxShadow>? boxShadow;
 
   const BottomNavigationBarWidget({
@@ -25,8 +23,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: ClipRRect(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(20),
-          topLeft: Radius.circular(20),
+          topRight: Radius.circular(AppDouble.d20),
+          topLeft: Radius.circular(AppDouble.d20),
         ),
         child: BottomNavigationBar(
           currentIndex: screenIndex,
@@ -34,16 +32,16 @@ class BottomNavigationBarWidget extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: screenIndex == 0
+                  padding: const EdgeInsets.only(bottom: AppDouble.d4),
+                  child: screenIndex == AppInt.i0
                       ? const Icon(Icons.home)
                       : const Icon(Icons.home_outlined),
                 ),
                 label: 'home'),
             BottomNavigationBarItem(
               icon: Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: screenIndex == 1
+                padding: const EdgeInsets.only(bottom: AppDouble.d4),
+                child: screenIndex == AppInt.i1
                     ? const Icon(Icons.shopping_cart)
                     : const Icon(Icons.shopping_cart_outlined),
               ),
@@ -51,8 +49,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             ),
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: screenIndex == 2
+                  padding: const EdgeInsets.only(bottom: AppDouble.d4),
+                  child: screenIndex == AppInt.i2
                       ? const Icon(Icons.settings)
                       : const Icon(Icons.settings_outlined),
                 ),

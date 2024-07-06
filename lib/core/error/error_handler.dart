@@ -1,4 +1,5 @@
 import 'package:arch1/core/utils/strings_manager.dart';
+import 'package:arch1/core/utils/values_manager.dart';
 import 'package:dio/dio.dart';
 
 import 'failure.dart';
@@ -56,22 +57,22 @@ enum DataSource {
 }
 
 class ResponseCode {
-  static const int success = 200; // success with data
-  static const int noContent = 201; // success with no data (no content)
-  static const int badResponse = 400; // failure api rejected request
-  static const int unauthorized = 401; // failure, user is not authorized
-  static const int forbidden = 403; // failure api rejected request
-  static const int internalServerError = 500; // failure, crash in server side
-  static const int notFound = 404; // failure, page not found
+  static const int success = AppInt.i200; // success with data
+  static const int noContent = AppInt.i201; // success with no data (no content)
+  static const int badResponse = AppInt.i400; // failure api rejected request
+  static const int unauthorized = AppInt.i401; // failure, user is not authorized
+  static const int forbidden = AppInt.i403; // failure api rejected request
+  static const int internalServerError = AppInt.i500; // failure, crash in server side
+  static const int notFound = AppInt.i404; // failure, page not found
   //local status code
-  static const int connectTimeOut = -1;
-  static const int cancel = -2;
-  static const int receiveTimeOut = -3;
-  static const int sendTimeOut = -4;
-  static const int cacheError = -5;
-  static const int noInternetConnection = -6;
-  static const int badCertificate = -7;
-  static const int unKnown = -8;
+  static const int connectTimeOut = -AppInt.i1;
+  static const int cancel = -AppInt.i2;
+  static const int receiveTimeOut = -AppInt.i3;
+  static const int sendTimeOut = -AppInt.i4;
+  static const int cacheError = -AppInt.i5;
+  static const int noInternetConnection = -AppInt.i6;
+  static const int badCertificate = -AppInt.i7;
+  static const int unKnown = -AppInt.i8;
 }
 
 class ResponseMessage {
@@ -143,6 +144,6 @@ extension DataSourceExtension on DataSource {
 }
 
 class ApiInternalStatus {
-  static const int success = 0;
-  static const int failure = 1;
+  static const int success = AppInt.i0;
+  static const int failure = AppInt.i1;
 }
